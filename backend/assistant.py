@@ -27,20 +27,17 @@ def format_category_label(category_name: str) -> str:
     )
 
 
-
 def generate_business_insight(question: str, data: list) -> str:
-    import json
-
     prompt = f"""
 You are a professional business intelligence analyst.
 
-Analyze the SQL query result and provide a concise business interpretation.
+Analyze the query result and provide a short business interpretation.
 
 USER QUESTION:
 {question}
 
-QUERY RESULT (JSON):
-{json.dumps(data, ensure_ascii=False, default=str)}
+QUERY RESULT:
+{data}
 
 DATA CONTEXT:
 - Dataset: Brazilian E-Commerce (Olist).
@@ -51,44 +48,66 @@ DATA CONTEXT:
 
 STRICT RULES:
 1. Write entirely in Indonesian.
-2. Maximum 2 concise sentences.
-3. Return only the insight paragraph without a heading.
-4. Only explain facts directly established by QUERY RESULT.
-5. Never invent trends, causes, recommendations, or values.
-6. Preserve the exact metric requested by the user.
-7. gross_sales must be called "gross sales" or "penjualan bruto".
-8. product_sales must be called "product sales" or "penjualan produk".
-9. Never confuse gross sales, product sales, and freight.
-10. For monetary values, copy the exact numeric value from QUERY RESULT.
-11. Never calculate, round, estimate, or modify monetary values.
-12. Use R$ only for actual monetary columns.
-13. Never format year, month, ID, count, or quantity as currency.
-14. Never format years as decimal numbers.
-15. For seller rankings, identify the seller by city and state when available.
-16. Do not include seller_id in the insight.
-17. For category rankings, use the exact category display name.
-18. Do not list all rows because they are already displayed in the report.
-19. For time-series data, identify the highest and lowest values only by comparing rows with the SAME metric.
-20. Determine the time period from the actual date or year/month columns.
-21. Never compare values from different years or months as if they belong to the same period.
-22. Never assume a previous month's value belongs to another year.
-23. If the result contains separate columns for different years, preserve each column's year exactly.
-24. If the requested metric or a valid comparison is unclear, provide a neutral description without inventing a comparison.
-25. Do not identify the largest increase or decrease unless the change is explicitly calculated in the result.
-26. When multiple metrics exist, prioritize the metric explicitly requested in USER QUESTION.
-27. Use natural, concise Indonesian business language.
+2. Do not reproduce the complete data list.
+3. You MAY mention monetary values when they help explain the main finding.
+4. Use Indonesian number formatting and the R$ currency symbol for monetary values.
+5. Never invent trends, causes, customer preferences, or recommendations.
+6. Only explain what the query result directly establishes.
+7. Avoid generic statements such as "penjualan yang signifikan".
+8. Maximum 2 concise sentences.
+9. Return only the insight paragraph without a heading.
+10. When referring to categories or entities, use their exact display names from the QUERY RESULT.
+11. Never translate category_label values.
+12. Do not list all categories or sellers again because they are already displayed in the report.
+13. Focus on the most important finding, not a description of the report.
+14. Do not claim a consistent upward or downward trend when the data shows fluctuations.
+15. For time-series data, identify the highest and lowest values based on the metric explicitly requested by the user.
+16. Do not identify the month with the largest increase unless month-over-month changes have actually been calculated.
+17. Never label a month as the highest based on assumptions or estimates.
+18. If the query result contains multiple metrics, prioritize the metric explicitly requested by the user.
+19. Mention at most one leading entity and one relevant comparison.
+20. Avoid unnecessary disclaimers.
+21. For category or seller sales aggregation, state the leading category or seller and its relative position.
+22. Use natural, concise Indonesian business language.
 
-Before writing, internally verify:
-- Which column represents the requested metric?
-- Which row or period contains the highest value?
-- Which row or period contains the lowest value?
-- Are the compared values from the correct periods?
-- Does every monetary value exactly match QUERY RESULT?
-
-Return only the final insight.
+METRIC TERMINOLOGY RULES:
+23. Preserve the exact business metric requested by the user.
+24. If the question asks for gross_sales or gross sales, always call it "gross sales" or "penjualan bruto".
+25. Never call gross_sales "penjualan bersih", "laba", "profit", or "pendapatan bersih".
+26. If the question asks for product_sales, use "product sales" or "penjualan produk".
+27. Do not replace one metric with another, even if the terms seem similar.
+28. For seller rankings, refer to the seller using its city and state when available. Do not include seller_id in the insight.
+29. When comparing two entities, use the requested metric for both entities.
+30. Only mention exact monetary values if they are present in QUERY RESULT. Never calculate or estimate missing values.
+31. Never invent, estimate, or assume numerical values.
+32. Every monetary value mentioned in the insight must exactly match a monetary value present in QUERY RESULT.
+33. If the requested metric is missing from QUERY RESULT, do not mention any monetary value.
+34. Review counts, order counts, item counts, and transaction counts are non-monetary quantities. Never add currency symbols or currency names to these values.
+35. For review distribution questions, identify the ratings with the highest and lowest review counts by comparing all rows in QUERY RESULT.
+36. Do not assume rating 1 has the lowest count or rating 5 has the highest count. Verify actual counts.
+37. Do not describe reviews as positive or negative unless the user explicitly asks for sentiment interpretation.
+38. When the question asks for review counts, use the term "jumlah review".
+39. Never round, truncate, or alter monetary values.
+40. Copy monetary values exactly from the query result.
+41. For seller ranking, mention the leading seller's city and state.
+42. Do not use vague phrases such as "kota tersebut" when the city is available.
+43. Use the exact seller location from the query result.
+44. total_items, jumlah_item_terjual, and item_terjual
+  represent quantities of items, not monetary values.
+45. Never add currency symbols or currency codes to item counts,
+  order counts, review counts, or transaction counts.
+46. Use the word "items" or "units" when describing total_items.
+47. Only use currency formatting for columns that contain
+  actual financial values.
+48. For monetary values, copy the exact numeric value from QUERY RESULT,
+    including all decimal digits.
+49. Never round monetary values to whole numbers or replace decimal
+    digits with zeros.
+50. Do not perform arithmetic or reformat monetary values.
+51. If you cannot reproduce a monetary value exactly, omit it
+    from the insight.
 """
     return generate_response(prompt).strip()
-
 
 
 from decimal import Decimal
