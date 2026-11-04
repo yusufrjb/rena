@@ -11,6 +11,14 @@ const THEME_SCRIPT =
   '(function(){try{var p=localStorage.getItem("theme");var d=p==="dark"||(p!=="light"&&matchMedia("(prefers-color-scheme: dark)").matches);var r=document.documentElement;r.classList.toggle("dark",d);r.style.colorScheme=d?"dark":"light";}catch(e){}})();';
 
 export const metadata: Metadata = {
+  icons: {
+    icon: [
+      { url: "/brand/rena-mark.svg", type: "image/svg+xml" },
+      { url: "/brand/rena-icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/brand/apple-touch-icon.png",
+  },
   title: "RENA · Retrieval-Enhanced Network for Analytics",
   description: "AI-powered business analytics workspace for Olist e-commerce data.",
 };
