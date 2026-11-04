@@ -1,0 +1,58 @@
+﻿.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.next/
+node_modules/
+data/raw/
+data/processed/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Frontend
+.next/
+node_modules/
+out/
+dist/
+
+# Data & logs
+data/raw/
+data/processed/
+*.log
+
+# Local files
+*.zip
+.DS_Store
+Thumbs.db
+
+data/vector_store/
+
+# AI coding agent local configuration
+.agents/
+.claude/
+.codex/
+.gemini/
+
+# Local AI agent instructions
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+
+# Local test payload
+ask_test.json

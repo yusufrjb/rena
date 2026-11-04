@@ -1,0 +1,50 @@
+﻿BUSINESS GLOSSARY - OLIST E-COMMERCE
+
+1. Gross Sales
+Gross sales adalah total nilai penjualan produk ditambah biaya pengiriman.
+Rumus: Product Sales + Freight Total.
+Gross sales bukan laba bersih dan bukan profit.
+
+2. Product Sales
+Product sales adalah total nilai produk yang terjual sebelum memperhitungkan biaya pengiriman.
+
+3. Freight Total
+Freight total adalah total biaya pengiriman yang dibebankan pada pesanan.
+
+4. Delivered Orders
+Delivered orders adalah pesanan dengan status delivered.
+Analisis penjualan bulanan, kategori, seller, pembayaran, dan review dalam proyek ini menggunakan pesanan delivered jika tidak dinyatakan berbeda.
+
+5. Total Orders
+Total orders adalah jumlah pesanan unik.
+Satu pesanan dapat memiliki beberapa item, transaksi pembayaran, atau review.
+
+6. Total Items
+Total items adalah jumlah unit produk yang tercatat dalam pesanan.
+Jumlah item tidak sama dengan jumlah pesanan.
+
+7. Payment Transactions
+Payment transactions adalah jumlah transaksi pembayaran.
+Satu pesanan dapat memiliki lebih dari satu transaksi pembayaran.
+
+8. Total Payment Value
+Total payment value adalah jumlah nilai pembayaran yang tercatat.
+Nilai pembayaran tidak sama dengan gross sales.
+
+9. Review Score
+Review score merupakan penilaian pelanggan dengan skala 1 sampai 5.
+Skor 1 menunjukkan penilaian terendah dan skor 5 menunjukkan penilaian tertinggi.
+
+10. Total Reviews
+Total reviews adalah jumlah catatan review pelanggan.
+Jumlah review tidak selalu sama dengan jumlah pesanan.
+
+11. Average Review Score
+Average review score dihitung menggunakan rata-rata tertimbang berdasarkan jumlah review pada setiap skor.
+Rumus: SUM(review_score * total_reviews) / SUM(total_reviews).
+
+12. Seller
+Seller adalah penjual yang menyediakan produk dalam transaksi e-commerce.
+
+13. Product Category
+Product category adalah kelompok produk berdasarkan kategori yang tersedia pada dataset Olist.

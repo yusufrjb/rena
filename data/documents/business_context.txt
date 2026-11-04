@@ -1,0 +1,114 @@
+BUSINESS CONTEXT - OLIST BRAZILIAN E-COMMERCE
+
+1. Dataset Overview
+Dataset Olist merupakan dataset publik Brazilian E-Commerce yang berisi data transaksi e-commerce di Brasil.
+Dataset mencakup pelanggan, pesanan, produk, seller, pembayaran, review, dan geolokasi.
+Periode transaksi berdasarkan order_purchase_timestamp adalah September 2016 sampai Oktober 2018.
+Dataset ini digunakan untuk analisis bisnis e-commerce.
+
+2. Order Status
+Status pesanan yang tersedia:
+- delivered: Pesanan telah diterima pelanggan.
+- shipped: Pesanan telah dikirim.
+- canceled: Pesanan dibatalkan.
+- unavailable: Pesanan tidak tersedia.
+- invoiced: Pesanan telah dibuatkan invoice.
+- processing: Pesanan sedang diproses.
+- created: Pesanan telah dibuat.
+- approved: Pesanan telah disetujui.
+
+Jumlah pesanan berdasarkan status:
+- delivered: 96,478
+- shipped: 1,107
+- canceled: 625
+- unavailable: 609
+- invoiced: 314
+- processing: 301
+- created: 5
+- approved: 2
+
+Total pesanan: 99,441.
+
+3. Sales Analysis
+Analisis penjualan menggunakan beberapa metrik:
+- Product Sales: Nilai produk yang terjual tanpa biaya pengiriman.
+- Freight Total: Total biaya pengiriman.
+- Gross Sales: Product Sales ditambah Freight Total.
+
+Gross Sales bukan profit, laba bersih, atau pendapatan bersih.
+
+Analisis penjualan bulanan menggunakan pesanan dengan status delivered.
+Analisis penjualan kategori produk dan performa seller juga menggunakan pesanan delivered.
+
+4. Payment Analysis
+Metode pembayaran yang tersedia:
+- credit_card
+- boleto
+- voucher
+- debit_card
+- not_defined
+
+Satu pesanan dapat memiliki lebih dari satu transaksi pembayaran.
+Total Transactions menunjukkan jumlah transaksi pembayaran.
+Total Orders menunjukkan jumlah pesanan unik.
+Total Payment Value menunjukkan jumlah nilai pembayaran yang tercatat.
+
+Total Payment Value tidak sama dengan Gross Sales.
+
+5. Product Category
+Produk dikelompokkan berdasarkan kategori produk.
+Nama kategori dapat tersedia dalam bahasa Portugis dan memiliki terjemahan bahasa Inggris.
+Contoh kategori:
+- Health & Beauty
+- Watches & Gifts
+- Bed, Bath & Table
+- Sports & Leisure
+- Computers & Accessories
+- Sports & Leisure
+
+Analisis kategori dapat dilakukan berdasarkan:
+- Gross Sales
+- Product Sales
+- Freight Total
+- Total Orders
+- Total Items
+
+6. Seller Analysis
+Seller merupakan penjual yang menyediakan produk dalam transaksi e-commerce.
+Analisis performa seller dapat dilakukan berdasarkan:
+- Gross Sales
+- Product Sales
+- Freight Total
+- Total Orders
+- Total Items
+
+Seller dapat diidentifikasi berdasarkan seller_id, seller_city, dan seller_state.
+
+7. Customer Reviews
+Review pelanggan memiliki review_score dengan skala 1 sampai 5.
+Skor 1 merupakan skor terendah.
+Skor 5 merupakan skor tertinggi.
+
+Analisis review dapat dilakukan berdasarkan:
+- Total Reviews
+- Total Orders
+- Review Score
+- Average Review Score
+
+Jumlah review tidak selalu sama dengan jumlah pesanan.
+Average Review Score menggunakan rata-rata tertimbang berdasarkan jumlah review pada setiap skor.
+
+8. Business Analysis Scope
+AI Business Data Assistant mendukung analisis:
+- Sales performance
+- Monthly sales trends
+- Product category performance
+- Seller performance
+- Payment transactions
+- Payment value
+- Order status distribution
+- Customer review distribution
+
+Data yang digunakan berasal dari dataset publik Olist.
+Dokumen ini tidak memuat kebijakan resmi perusahaan, ketentuan pengiriman, SLA, prosedur operasional, atau kebijakan pengembalian barang.
+Jangan menyimpulkan kebijakan perusahaan hanya berdasarkan data transaksi.
