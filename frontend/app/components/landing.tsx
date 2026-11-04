@@ -5,6 +5,7 @@ import {
   CodeIcon,
   DatabaseIcon,
   PanelIcon,
+  RenaGlyph,
   SendIcon,
   SparkIcon,
   TableIcon,
@@ -13,26 +14,16 @@ import { ThemeSwitcher } from "@/app/components/theme-switcher";
 import { SUGGESTED_QUESTIONS } from "@/app/lib/suggested-questions";
 
 const FEATURES = [
-  {
-    title: "Interactive Business Dashboard", Icon: PanelIcon, wide: true,
-    text: "Eight charts and five KPI cards cover sales, orders, categories, sellers, payments, reviews and freight, all read from the Olist dataset in PostgreSQL."
-  },
-  {
-    title: "AI-Powered Data Analysis", Icon: SparkIcon, wide: false,
-    text: "Every answer comes with a written explanation and a business insight, so you see what the numbers mean."
-  },
-  {
-    title: "Natural Language to SQL", Icon: CodeIcon, wide: false,
-    text: "Ask in plain language. The assistant writes read-only SQL, runs it, and shows the query so you can check it."
-  },
-  {
-    title: "Business Performance Insights", Icon: TableIcon, wide: false,
-    text: "Results arrive as tables with detailed reports, not just a sentence."
-  },
-  {
-    title: "Query History", Icon: ClockIcon, wide: false,
-    text: "Return to any question from your current session and see its answer again."
-  },
+  { title: "Interactive Business Dashboard", Icon: PanelIcon, wide: true,
+    text: "Eight charts and five KPI cards cover sales, orders, categories, sellers, payments, reviews and freight, all read from the Olist dataset in PostgreSQL." },
+  { title: "AI-Powered Data Analysis", Icon: SparkIcon, wide: false,
+    text: "Every answer comes with a written explanation and a business insight, so you see what the numbers mean." },
+  { title: "Natural Language to SQL", Icon: CodeIcon, wide: false,
+    text: "Ask in plain language. The assistant writes read-only SQL, runs it, and shows the query so you can check it." },
+  { title: "Business Performance Insights", Icon: TableIcon, wide: false,
+    text: "Results arrive as tables with detailed reports, not just a sentence." },
+  { title: "Query History", Icon: ClockIcon, wide: false,
+    text: "Return to any question from your current session and see its answer again." },
 ];
 
 const STEPS = [
@@ -56,7 +47,7 @@ function Brand({ light = false }: { light?: boolean }): React.JSX.Element {
   return (
     <Link href="/" className="flex items-center gap-2.5" aria-label="RENA home">
       <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-on-primary">
-        <SparkIcon className="h-4 w-4" />
+        <RenaGlyph className="h-[18px] w-[18px]" />
       </span>
       <span className={`text-sm font-semibold ${light ? "text-white" : "text-ink"}`}>RENA</span>
     </Link>
@@ -233,7 +224,7 @@ export function Landing(): React.JSX.Element {
             </ul>
           </div>
         </div>
-        <p className="mx-auto mt-8 max-w-6xl text-xs text-muted-soft">© 2026 AI Business Data Assistant. Data: Olist Brazilian E-Commerce Public Dataset.</p>
+        <p className="mx-auto mt-8 max-w-6xl text-xs text-muted-soft">© {new Date().getFullYear()} RENA. Data: Olist Brazilian E-Commerce Public Dataset.</p>
       </footer>
     </div>
   );

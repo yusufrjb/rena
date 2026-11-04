@@ -9,6 +9,7 @@ import {
   DatabaseIcon,
   PanelIcon,
   PlusIcon,
+  RenaGlyph,
   SparkIcon,
 } from "@/app/components/icons";
 import { StatusBadge } from "@/app/components/status-badge";
@@ -58,7 +59,7 @@ export function Sidebar({
         <div className="flex h-14 shrink-0 items-center justify-between gap-2 px-4">
           <Link href="/" title="Back to home" className="flex min-w-0 items-center gap-2.5">
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-on-primary">
-              <SparkIcon className="h-4 w-4" />
+              <RenaGlyph className="h-[18px] w-[18px]" />
             </div>
             <div className={`min-w-0 leading-tight ${hide}`}>
               <div className="truncate text-sm font-semibold text-ink">RENA</div>
