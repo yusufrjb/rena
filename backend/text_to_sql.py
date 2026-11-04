@@ -224,6 +224,26 @@ MONTHLY YEAR-OVER-YEAR COMPARISON:
      for this type of comparison.
      Never use an unfiltered SUM(gross_sales) for a year-specific metric.
 
+119. When the user asks for month-over-month (MoM) growth,
+     monthly sales growth, or percentage change from the previous month,
+     use olist.v_monthly_sales and LAG(gross_sales) OVER (
+         ORDER BY sales_month ASC
+     ) to retrieve the previous month's sales.
+
+120. Calculate MoM growth using:
+     ((gross_sales - previous_month_sales)
+     / NULLIF(previous_month_sales, 0)) * 100.
+
+121. Do not use SUM(gross_sales) because
+     olist.v_monthly_sales is already aggregated by month.
+
+122. Include sales_month, gross_sales,
+     previous_month_sales, and mom_growth_percentage
+     in the result.
+
+123. Use NULL for MoM growth when previous_month_sales
+     is NULL or zero. Never divide by zero.
+
 For weighted average review score:
 - When calculating average review_score from olist.v_review_analysis,
   use SUM(review_score * total_reviews)::numeric
