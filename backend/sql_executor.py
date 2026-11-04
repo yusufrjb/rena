@@ -3,7 +3,7 @@ from sqlalchemy import text
 from sqlglot import exp, parse_one
 from db import engine
 from sql_validator import validate_sql
-
+import sys
 
 MAX_ROWS = 100
 
@@ -64,7 +64,7 @@ def execute_sql(query: str) -> dict:
         }
 
     except Exception as error:
-        print(f"SQL EXECUTION ERROR: {error}")
+        print(f"SQL EXECUTION ERROR: {e}", file=sys.stderr)
         print(f"FAILED SQL: {query}")
 
         return {
