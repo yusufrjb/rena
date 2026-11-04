@@ -1,0 +1,14 @@
+﻿fastapi
+uvicorn[standard]
+sqlalchemy
+psycopg[binary]
+python-dotenv
+httpx
+sqlglot
+mcp<2
+langchain
+langchain-community
+langchain-core
+langchain-text-splitters
+faiss-cpu
+pypdf

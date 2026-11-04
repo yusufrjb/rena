@@ -1,16 +1,19 @@
-from sqlalchemy import create_engine, URL
-from dotenv import load_dotenv
+
 import os
 
-load_dotenv(override=True)
+from dotenv import load_dotenv
+from sqlalchemy import URL, create_engine
+
+load_dotenv(override=False)
 
 engine = create_engine(
     URL.create(
         drivername="postgresql+psycopg",
-        username="olist_user",
+        username=os.getenv("POSTGRES_USER", "olist_user"),
         password=os.getenv("POSTGRES_PASSWORD"),
-        host="127.0.0.1",
-        port=5433,
-        database="olist_analytics",
-    )
+        host=os.getenv("POSTGRES_HOST", "127.0.0.1"),
+        port=int(os.getenv("POSTGRES_PORT", "5433")),
+        database=os.getenv("POSTGRES_DB", "olist_analytics"),
+    ),
+    pool_pre_ping=True,
 )

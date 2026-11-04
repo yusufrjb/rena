@@ -1,9 +1,10 @@
 import json
 import sys
 from pathlib import Path
-
+import os
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
+
 
 
 BACKEND_DIR = Path(__file__).resolve().parents[1]
@@ -14,7 +15,7 @@ async def call_mcp_tool(tool_name: str, arguments: dict) -> dict:
         command=sys.executable,
         args=["-m", "mcp_server.server"],
         cwd=str(BACKEND_DIR),
-        env=None,
+        env=os.environ.copy(),
     )
 
     async with stdio_client(server_params) as (read, write):
@@ -25,6 +26,7 @@ async def call_mcp_tool(tool_name: str, arguments: dict) -> dict:
                 tool_name,
                 arguments,
             )
+            print("DEBUG MCP RAW RESULT:", repr(result), file=sys.stderr)
 
             if result.isError:
                 raise RuntimeError("MCP tool gagal dijalankan.")
@@ -51,7 +53,7 @@ async def discover_mcp_tools() -> list[dict]:
         command=sys.executable,
         args=["-m", "mcp_server.server"],
         cwd=str(BACKEND_DIR),
-        env=None,
+        env=os.environ.copy(),
     )
 
     async with stdio_client(server_params) as (read, write):
