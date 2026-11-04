@@ -212,6 +212,18 @@ MONTHLY YEAR-OVER-YEAR COMPARISON:
 
 117. Only use LAG() when the user explicitly asks for previous-period comparison, month-over-month changes, or sequential monthly trends. In that case, order by sales_month ASC and use an alias such as previous_month_gross_sales. Never label a LAG() result as another year's sales.
 
+118. For monthly year-over-year comparisons between specific years,
+     use exactly one SELECT statement with conditional aggregation.
+     Use:
+     - EXTRACT(MONTH FROM sales_month) as the only GROUP BY dimension.
+     - SUM(CASE WHEN EXTRACT(YEAR FROM sales_month) = requested_year
+       THEN gross_sales ELSE 0 END) for each requested year's metric.
+     - A separate CASE WHEN condition for each year.
+     - WHERE EXTRACT(YEAR FROM sales_month) IN (all requested years).
+     Never use LAG(), UNION, UNION ALL, self JOIN, or GROUP BY year
+     for this type of comparison.
+     Never use an unfiltered SUM(gross_sales) for a year-specific metric.
+
 For weighted average review score:
 - When calculating average review_score from olist.v_review_analysis,
   use SUM(review_score * total_reviews)::numeric
@@ -219,6 +231,7 @@ For weighted average review score:
 - Never return SUM(review_score * total_reviews) alone
   when the user asks for an average.
 - Alias the result as rata_rata_review_score.
+
 
 For questions asking total payment transactions or number of payment
 transactions by payment method:
