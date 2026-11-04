@@ -238,7 +238,15 @@ def format_query_report(question: str, data: list) -> str:
         formatted = f"{value:,.{decimals}f}"
         return formatted.replace(",", "X").replace(".", ",").replace("X", ".")
 
+    
     def format_value(key, value):
+        # Tahun dan bulan bukan angka desimal
+        if key in {"tahun", "year"}:
+            return str(int(value))
+
+        if key in {"bulan", "month"}:
+            return str(int(value))
+
         if key in percentage_fields:
             return f"{format_number(value, decimals=4)}%"
 
@@ -260,6 +268,7 @@ def format_query_report(question: str, data: list) -> str:
             return f"{value:,.0f}".replace(",", ".")
 
         return format_number(value)
+
 
     for index, row in enumerate(data, start=1):
         category = row.get("category_label") or row.get("category_name")

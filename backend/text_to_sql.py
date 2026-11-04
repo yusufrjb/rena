@@ -192,6 +192,26 @@ GENERAL VALIDATION:
 107. Ensure every referenced column exists in the selected view.
 108. Ensure the query returns the dimensions and metrics requested by the user.
 
+MONTHLY YEAR-OVER-YEAR COMPARISON:
+
+109. When the user asks to compare monthly sales between two or more years, use olist.v_monthly_sales and compare the same calendar month across the requested years.
+
+110. Do not use LAG() to compare different years. LAG() returns the previous row, not the same month in another year.
+
+111. For comparisons between two specific years, use a self JOIN on olist.v_monthly_sales, matching EXTRACT(MONTH FROM sales_month) between the two years.
+
+112. Filter each side of the JOIN using the exact years requested by the user.
+
+113. Use gross_sales directly from each side of the JOIN. Do not use SUM(gross_sales), because olist.v_monthly_sales is already aggregated by month.
+
+114. Use descriptive aliases that explicitly identify each year, such as total_gross_sales_2018 and total_gross_sales_2017.
+
+115. Use LEFT JOIN when comparing a reference year against another year, so months from the reference year are retained even if the corresponding month is missing in the other year.
+
+116. Order monthly comparison results by the calendar month in ascending order.
+
+117. Only use LAG() when the user explicitly asks for previous-period comparison, month-over-month changes, or sequential monthly trends. In that case, order by sales_month ASC and use an alias such as previous_month_gross_sales. Never label a LAG() result as another year's sales.
+
 For weighted average review score:
 - When calculating average review_score from olist.v_review_analysis,
   use SUM(review_score * total_reviews)::numeric
