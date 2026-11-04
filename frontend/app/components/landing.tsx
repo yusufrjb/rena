@@ -32,6 +32,9 @@ const STEPS = [
   { title: "Get data-backed answers", text: "Read the answer and insight, inspect the result table, and review the SQL behind it." },
 ];
 
+// Opened in a real browser tab to wake the sleeping Blitz Free backend.
+const BACKEND_HEALTH_URL = "https://rena.yusufrjb.blitz.cloud/health";
+
 const NAV = [
   { href: "#features", label: "Features" },
   { href: "#preview", label: "Product" },
@@ -146,6 +149,19 @@ export function Landing(): React.JSX.Element {
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <Link href="/dashboard" className={btnPrimary}>Explore Dashboard</Link>
               <a href="#features" className={btnSecondary}>Discover Features</a>
+            </div>
+            <div className="mx-auto mt-6 flex max-w-xl flex-col items-center gap-3 rounded-xl border border-primary-line bg-primary-soft px-4 py-4 text-center sm:flex-row sm:gap-4 sm:text-left">
+              <a
+                href={BACKEND_HEALTH_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex shrink-0 items-center justify-center rounded-lg border border-primary bg-panel px-4 py-2 text-sm font-medium text-link transition-colors hover:bg-primary hover:text-on-primary"
+              >
+                Prepare Live Demo
+              </a>
+              <p className="text-sm text-body">
+                Wake up the backend before exploring the dashboard. Wait until the health endpoint reports healthy, then return here.
+              </p>
             </div>
           </div>
           <div className="relative mt-14"><ProductPreview /></div>
