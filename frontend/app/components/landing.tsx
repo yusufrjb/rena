@@ -14,16 +14,26 @@ import { ThemeSwitcher } from "@/app/components/theme-switcher";
 import { SUGGESTED_QUESTIONS } from "@/app/lib/suggested-questions";
 
 const FEATURES = [
-  { title: "Interactive Business Dashboard", Icon: PanelIcon, wide: true,
-    text: "Eight charts and five KPI cards cover sales, orders, categories, sellers, payments, reviews and freight, all read from the Olist dataset in PostgreSQL." },
-  { title: "AI-Powered Data Analysis", Icon: SparkIcon, wide: false,
-    text: "Every answer comes with a written explanation and a business insight, so you see what the numbers mean." },
-  { title: "Natural Language to SQL", Icon: CodeIcon, wide: false,
-    text: "Ask in plain language. The assistant writes read-only SQL, runs it, and shows the query so you can check it." },
-  { title: "Business Performance Insights", Icon: TableIcon, wide: false,
-    text: "Results arrive as tables with detailed reports, not just a sentence." },
-  { title: "Query History", Icon: ClockIcon, wide: false,
-    text: "Return to any question from your current session and see its answer again." },
+  {
+    title: "Interactive Business Dashboard", Icon: PanelIcon, wide: true,
+    text: "Eight charts and five KPI cards cover sales, orders, categories, sellers, payments, reviews and freight, all read from the Olist dataset in PostgreSQL."
+  },
+  {
+    title: "AI-Powered Data Analysis", Icon: SparkIcon, wide: false,
+    text: "Every answer comes with a written explanation and a business insight, so you see what the numbers mean."
+  },
+  {
+    title: "Natural Language to SQL", Icon: CodeIcon, wide: false,
+    text: "Ask in plain language. The assistant writes read-only SQL, runs it, and shows the query so you can check it."
+  },
+  {
+    title: "Business Performance Insights", Icon: TableIcon, wide: false,
+    text: "Results arrive as tables with detailed reports, not just a sentence."
+  },
+  {
+    title: "Query History", Icon: ClockIcon, wide: false,
+    text: "Return to any question from your current session and see its answer again."
+  },
 ];
 
 const STEPS = [
@@ -33,7 +43,7 @@ const STEPS = [
 ];
 
 // Opened in a real browser tab to wake the sleeping Blitz Free backend.
-const BACKEND_HEALTH_URL = "https://rena.yusufrjb.blitz.cloud/health";
+const BACKEND_HEALTH_URL = "https://rena.yusufrjb.prod.page/health";
 
 const NAV = [
   { href: "#features", label: "Features" },
