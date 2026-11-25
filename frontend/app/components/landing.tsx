@@ -250,7 +250,9 @@ export function Landing(): React.JSX.Element {
             </ul>
           </div>
         </div>
-        <p className="mx-auto mt-8 max-w-6xl text-xs text-muted-soft">© {new Date().getFullYear()} RENA. Data: Olist Brazilian E-Commerce Public Dataset.</p>
+        <p className="mx-auto mt-8 max-w-6xl text-xs text-muted-soft">
+          © 2026 RENA. Data: Olist Brazilian E-Commerce Public Dataset.
+        </p>
       </footer>
     </div>
   );
